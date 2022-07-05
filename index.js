@@ -18,13 +18,17 @@ function generateColourPalette(){
     }
 }
 
-// Generates a new palette as soon as page is loaded.
+// Generates a new colour palette as soon as page is loaded.
 document.addEventListener("DOMContentLoaded", generateColourPalette);
 
-// Generates a new palette when user hits spacebar.
+// Generates a new colour palette when user hits spacebar.
 document.addEventListener("keypress", (e) => {
     if (e.key === " "){
         e.target.blur() // Stops the spacebar focusing on the last button that was clicked
         generateColourPalette();
     } else return;
 })
+
+// Generates a new colour palette when user click the "[SPACE]" button
+const spaceBarButton = document.querySelector(".space-button");
+spaceBarButton.addEventListener("click", generateColourPalette)
