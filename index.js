@@ -15,7 +15,13 @@ function generateColourPalette(){
         const randomColour = createHexCode()
         colourSample[i].style.background = randomColour;
         colourSampleHexCode[i].textContent = randomColour;
+        colourSample[i].dataset.hexcode = `${randomColour}`
     }
+}
+
+function copyHexToClipBoard(colour){
+    const hexCode = colour.parentElement.parentElement.parentElement.dataset.hexcode
+    navigator.clipboard.writeText(hexCode)
 }
 
 // Generates a new colour palette as soon as page is loaded.
@@ -32,3 +38,11 @@ document.addEventListener("keypress", (e) => {
 // Generates a new colour palette when user click the "[SPACE]" button
 const spaceBarButton = document.querySelector(".space-button");
 spaceBarButton.addEventListener("click", generateColourPalette)
+
+// Lets the user copy the hex code to their clipboard
+const copyIcons = document.querySelectorAll(".copy-icon");
+for (let i = 0; i < copyIcons.length; i++){
+    copyIcons[i].addEventListener("click", (e) => {
+        copyHexToClipBoard(e.target);
+    })
+}
