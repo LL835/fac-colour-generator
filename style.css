@@ -33,6 +33,7 @@ body {
 }
 
 .space-button {
+    cursor: pointer;
     padding: 1px 7px;
     border: none;
     background: none;
@@ -70,6 +71,7 @@ body {
 }
 
 .icon {
+    cursor: pointer;
     background: none;
     border: none;
     padding: 3px 0;
