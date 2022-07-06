@@ -13,9 +13,11 @@ function generateColourPalette(){
     const colourSampleHexCode = document.querySelectorAll(".hex-code")
     for (let i = 0; i < colourSample.length; i++) {
         const randomColour = createHexCode()
+        if (colourSample[i].dataset.status === "unlocked") {
         colourSample[i].style.background = randomColour;
         colourSampleHexCode[i].textContent = randomColour;
         colourSample[i].dataset.hexcode = `${randomColour}`
+        }
     }
 }
 
