@@ -1,8 +1,8 @@
 function createHexCode() {
     const hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
-    let newHexCode = "#"
+    let newHexCode = "#";
     for (let i = 0; i < 6; i++) {
-        const randomHexValue = hexValues[Math.floor(Math.random() * hexValues.length)]
+        const randomHexValue = hexValues[Math.floor(Math.random() * hexValues.length)];
         newHexCode += randomHexValue;
     }
     return newHexCode;
@@ -12,18 +12,18 @@ function generateColourPalette(){
     const colourSample = document.querySelectorAll(".colour-sample");
     const colourSampleHexCode = document.querySelectorAll(".hex-code")
     for (let i = 0; i < colourSample.length; i++) {
-        const randomColour = createHexCode()
+        const randomColour = createHexCode();
         if (colourSample[i].dataset.status === "unlocked") {
         colourSample[i].style.background = randomColour;
         colourSampleHexCode[i].textContent = randomColour;
-        colourSample[i].dataset.hexcode = `${randomColour}`
+        colourSample[i].dataset.hexcode = `${randomColour}`;
         }
     }
 }
 
 function copyHexToClipBoard(colour){
-    const hexCode = colour.parentElement.parentElement.parentElement.dataset.hexcode
-    navigator.clipboard.writeText(hexCode)
+    const hexCode = colour.parentElement.parentElement.parentElement.dataset.hexcode;
+    navigator.clipboard.writeText(hexCode);
 }
 
 function toggleLock(button){
@@ -33,8 +33,30 @@ function toggleLock(button){
         status.dataset.status = "locked";
     } else {
         button.src = "./icons/unlock.png";
-        status.dataset.status = "unlocked"
+        status.dataset.status = "unlocked";
     }
+}
+
+function showTooltip(icon){
+    const button = icon.parentElement
+    const tooltip = document.createElement("span");
+    tooltip.classList.add("tooltip");
+    if (button.classList.contains("copy-icon")){
+        tooltip.innerHTML = "Copied";
+    }
+    else if (button.classList.contains("padlock-icon") && button.parentElement.parentElement.dataset.status === "locked"){
+        tooltip.innerHTML = "Locked";
+    } else {
+        tooltip.innerHTML ="Unlocked";
+    }
+    const tooltipArrow = document.createElement("span");
+    tooltipArrow.classList.add("tooltip-arrow");
+    button.append(tooltip, tooltipArrow);
+
+    setInterval(() => {
+        tooltip.remove();
+        tooltipArrow.remove()
+    }, 400)
 }
 
 // Generates a new colour palette as soon as page is loaded.
@@ -48,7 +70,7 @@ document.addEventListener("keypress", (e) => {
     } else return;
 })
 
-// Generates a new colour palette when user click the "[SPACE]" button
+// Generates a new colour palette when user clicks the "[SPACE]" button
 const spaceBarButton = document.querySelector(".space-button");
 spaceBarButton.addEventListener("click", generateColourPalette)
 
@@ -56,7 +78,9 @@ spaceBarButton.addEventListener("click", generateColourPalette)
 const copyIcons = document.querySelectorAll(".copy-icon");
 for (let i = 0; i < copyIcons.length; i++){
     copyIcons[i].addEventListener("click", (e) => {
+        console.log(e.target)
         copyHexToClipBoard(e.target);
+        showTooltip(e.target)
     })
 }
 
@@ -64,6 +88,7 @@ for (let i = 0; i < copyIcons.length; i++){
 const padlockIcons = document.querySelectorAll(".padlock-icon")
 for (let i = 0; i < padlockIcons.length; i++){
     padlockIcons[i].addEventListener("click", (e) => {
-        toggleLock(e.target)
+        toggleLock(e.target);
+        showTooltip(e.target)
     })
 }

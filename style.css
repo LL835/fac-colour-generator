@@ -76,10 +76,36 @@ body {
     border: none;
     padding: 3px 0;
     transition: 100ms;
+    position:relative;
 }
 
 .icon:hover {
     transform: scale(1.1);
+}
+
+.tooltip {
+    position: absolute;
+    min-width: 100px;
+    padding: 5px 2px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    background: rgb(0, 0, 0, 0.8);
+    color: white;
+    z-index: 1;
+    bottom: calc(100% + 5px);
+    left: -100%;
+}
+
+.tooltip-arrow{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: solid 5px transparent;
+    border-top-color:rgb(0, 0, 0, 0.8) ;
+    z-index: 1;
+    bottom: calc(100% - 5px);
+    right: 30%;
+
 }
 
 /* media queries */
