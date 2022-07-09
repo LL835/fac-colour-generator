@@ -55,8 +55,8 @@ function showTooltip(icon){
 
     setInterval(() => {
         tooltip.remove();
-        tooltipArrow.remove()
-    }, 400)
+        tooltipArrow.remove();
+    }, 400);
 }
 
 // Generates a new colour palette as soon as page is loaded.
@@ -78,9 +78,9 @@ spaceBarButton.addEventListener("click", generateColourPalette)
 const copyIcons = document.querySelectorAll(".copy-icon");
 for (let i = 0; i < copyIcons.length; i++){
     copyIcons[i].addEventListener("click", (e) => {
-        console.log(e.target)
+        console.log(e.target);
         copyHexToClipBoard(e.target);
-        showTooltip(e.target)
+        showTooltip(e.target);
     })
 }
 
@@ -89,6 +89,6 @@ const padlockIcons = document.querySelectorAll(".padlock-icon")
 for (let i = 0; i < padlockIcons.length; i++){
     padlockIcons[i].addEventListener("click", (e) => {
         toggleLock(e.target);
-        showTooltip(e.target)
+        showTooltip(e.target);
     })
 }
