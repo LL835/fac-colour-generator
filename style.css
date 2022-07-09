@@ -116,8 +116,6 @@ body {
         font-size: 0.8rem;
     }
     .colour-palette {
-        /* grid-template-columns: 100%;
-        grid-template-rows: repeat(5, 1fr); */
         display: flex;
         flex-direction: column;
     }
@@ -137,5 +135,4 @@ body {
         padding-right: 10px;
         flex: 1;
     }
-
 }
