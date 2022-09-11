@@ -63,7 +63,7 @@ function showTooltip(icon){
 document.addEventListener("DOMContentLoaded", generateColourPalette);
 
 // Generates a new colour palette when user hits spacebar.
-document.addEventListener("keypress", (e) => {
+document.addEventListener("keydown", (e) => {
     if (e.key === " "){
         e.target.blur() // Stops the spacebar focusing on the last button that was clicked
         generateColourPalette();
